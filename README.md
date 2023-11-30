@@ -950,3 +950,7 @@ XTX Technology Limited       XT25F64B                             PREW          
 Zetta Device                 ZD25D20                                              256  SPI       
 Zetta Device                 ZD25D40                                              512  SPI       
 ```
+
+# Related
+- https://github.com/therealdreg/flashrom-dregmod
+- https://github.com/therealdreg/asprogrammer-dregmod
