@@ -206,25 +206,19 @@ write_wp_bits: wp_verify reg:3 value:0x0
 ``` 
 
 
-## Supported devices
+## Supported programmers
 
 ```
-Supported devices for the buspirate_spi programmer:
-Dangerous Prototypes Bus Pirate
-
-Supported USB devices for the ch341a_spi programmer:
-Vendor            Device   USB IDs    Status
-Winchiphead (WCH) CH341A   1a86:5512  OK
-
-Supported USB devices for the ch347_spi programmer:
-Vendor              Device               USB IDs    Status
-QinHeng Electronics USB To UART+SPI+I2C  1a86:55db  OK
-
 Supported programmers:
-dummy, ft2232_spi, buspirate_spi, ch341a_spi, ch347_spi
+dummy, raiden_debug_spi, ft2232_spi, serprog, buspirate_spi, dediprog,
+developerbox, pony_spi, usbblaster_spi, pickit2_spi, ch341a_spi, ch347_spi,
+digilent_spi, stlinkv3_spi, dirtyjtag_spi
 
 Supported devices for the dummy programmer:
 Dummy device, does nothing and logs all accesses
+
+Supported USB devices for the raiden_debug_spi programmer:
+Vendor  Device   USB IDs    Status
 
 Supported USB devices for the ft2232_spi programmer:
 Vendor   Device                              USB IDs    Status
@@ -245,6 +239,54 @@ Olimex   ARM-USB-OCD                         15ba:0003  OK
 Olimex   ARM-USB-TINY                        15ba:0004  OK
 Olimex   ARM-USB-OCD-H                       15ba:002b  OK
 Olimex   ARM-USB-TINY-H                      15ba:002a  OK
+
+Supported devices for the serprog programmer:
+All programmer devices speaking the serprog protocol
+
+Supported devices for the buspirate_spi programmer:
+Dangerous Prototypes Bus Pirate
+
+Supported USB devices for the dediprog programmer:
+Vendor   Device             USB IDs    Status
+Dediprog SF100/SF200/SF600  0483:dada  OK
+
+Supported USB devices for the developerbox programmer:
+Vendor       Device                                 USB IDs    Status
+Silicon Labs CP2102N USB to UART Bridge Controller  10c4:ea60  OK
+
+Supported devices for the pony_spi programmer:
+Programmers compatible with SI-Prog, serbang or AJAWe
+
+Supported USB devices for the usbblaster_spi programmer:
+Vendor  Device       USB IDs    Status
+Altera  USB-Blaster  09fb:6001  OK
+
+Supported USB devices for the pickit2_spi programmer:
+Vendor    Device    USB IDs    Status
+Microchip PICkit 2  04d8:0033  OK
+
+Supported USB devices for the ch341a_spi programmer:
+Vendor            Device   USB IDs    Status
+Winchiphead (WCH) CH341A   1a86:5512  OK
+
+Supported USB devices for the ch347_spi programmer:
+Vendor              Device               USB IDs    Status
+QinHeng Electronics USB To UART+SPI+I2C  1a86:55db  OK
+
+Supported USB devices for the digilent_spi programmer:
+Vendor   Device                  USB IDs    Status
+Digilent Development board JTAG  1443:0007  OK
+
+Supported USB devices for the stlinkv3_spi programmer:
+Vendor             Device              USB IDs    Status
+STMicroelectronics STLINK-V3E          0483:374e  Untested
+STMicroelectronics STLINK-V3S          0483:374f  OK
+STMicroelectronics STLINK-V3 dual VCP  0483:3753  OK
+STMicroelectronics STLINK-V3 no MSD    0483:3754  Untested
+
+Supported USB devices for the dirtyjtag_spi programmer:
+Vendor    Device      USB IDs    Status
+DirtyJTAG JTAG probe  1209:c0ca  OK
 ```
 
 ## Supported ICs
@@ -332,7 +374,7 @@ Atmel                        AT26DF081A                           PREW          
 Atmel                        AT26DF161                            PREW           2048  SPI       
 Atmel                        AT26DF161A                           PREW           2048  SPI       
 Atmel                        AT26F004                                      W      512  SPI       
-Atmel                        AT29C010A                            PRE             128  Parallel  
+Atmel                        AT29C010A                            PREW            128  Parallel  
 Atmel                        AT29C020                             PREW            256  Parallel  
 Atmel                        AT29C040A                                            512  Parallel  
 Atmel                        AT29C512                             PREW             64  Parallel  
@@ -433,7 +475,7 @@ Eon                          EN29GL128                                          
 Eon                          EN29LV040(A)                         PREW            512  Parallel  
 Eon                          EN29LV640B                           PREW           8192  Parallel  
 Fudan                        FM25F005                                              64  SPI       
-Fudan                        FM25F01                                              128  SPI       
+Fudan                        FM25F01                              PREW            128  SPI       
 Fudan                        FM25F02(A)                                           256  SPI       
 Fudan                        FM25F04(A)                                           512  SPI       
 Fudan                        FM25Q08                                             1024  SPI       
@@ -457,7 +499,8 @@ GigaDevice                   GD25LQ64(B)                          PREW          
 GigaDevice                   GD25LQ80                                            1024  SPI       
 GigaDevice                   GD25Q10                                              128  SPI       
 GigaDevice                   GD25Q127C/                           PREW          16384  SPI       
-                             GD25Q128C
+                             GD25Q128E
+GigaDevice                   GD25Q128C                            PREW          16384  SPI       
 GigaDevice                   GD25Q16(B)                           PREW           2048  SPI       
 GigaDevice                   GD25Q20(B)                           PREW            256  SPI       
 GigaDevice                   GD25Q256D/                           PREW          32768  SPI       
@@ -481,6 +524,7 @@ ISSI                         IS25LP016                            PREW          
 ISSI                         IS25LP064                            PREW           8192  SPI       
 ISSI                         IS25LP128                            PREW          16384  SPI       
 ISSI                         IS25LP256                            PREW          32768  SPI       
+ISSI                         IS25LQ016                            PREW           2048  SPI       
 ISSI                         IS25WP016                            PREW           2048  SPI       
 ISSI                         IS25WP020                                            256  SPI       
 ISSI                         IS25WP032                                           4096  SPI       
@@ -489,6 +533,7 @@ ISSI                         IS25WP064                            PREW          
 ISSI                         IS25WP080                            PREW           1024  SPI       
 ISSI                         IS25WP128                            PREW          16384  SPI       
 ISSI                         IS25WP256                            PREW          32768  SPI       
+ISSI                         IS25WQ040                            PREW            512  SPI       
 ISSI                         IS29GL064B                                          8192  Parallel  
 ISSI                         IS29GL064H/L                                        8192  Parallel  
 ISSI                         IS29GL064T                                          8192  Parallel  
@@ -543,6 +588,7 @@ Macronix                     MX25L3206E/                          PREW          
 Macronix                     MX25L3235D                                          4096  SPI       
 Macronix                     MX25L3233F/                          PREW           4096  SPI       
                              MX25L3273E
+Macronix                     MX25L3255E                           PREW           4096  SPI       
 Macronix                     MX25L4005(A/C)/                      PREW            512  SPI       
                              MX25L4006E
 Macronix                     MX25L512(E)/                         PREW             64  SPI       
@@ -570,6 +616,7 @@ Macronix                     MX25V1635F                           PREW          
 Macronix                     MX25U12835F                          PREW          16384  SPI       
 Macronix                     MX25U1635E                           PR             2048  SPI       
 Macronix                     MX25U25635F                          PREW          32768  SPI       
+Macronix                     MX25U25643G                          PREW          32768  SPI       
 Macronix                     MX25U3235E/F                         PREW           4096  SPI       
 Macronix                     MX25U51245G                          PREW          65536  SPI       
 Macronix                     MX25U6435E/F                         PREW           8192  SPI       
@@ -720,6 +767,9 @@ PMC                          Pm39LV040                            PR            
 PMC                          Pm39LV512                            PREW             64  Parallel  
 PMC                          Pm49FL002                            PR              256  LPC, FWH  
 PMC                          Pm49FL004                            PREW            512  LPC, FWH  
+PUYA                         P25Q06H                                               64  SPI       
+PUYA                         P25Q11H                                              128  SPI       
+PUYA                         P25Q21H                              PREW            256  SPI       
 SST                          SST25LF020A                          PREW            256  SPI       
 SST                          SST25LF040A                          PREW            512  SPI       
 SST                          SST25LF080(A)                                       1024  SPI       
@@ -939,6 +989,7 @@ Winbond                      W49F002U/N                           PREW          
 Winbond                      W49F020                              P               256  Parallel  
 Winbond                      W49V002A                             PREW            256  LPC       
 Winbond                      W49V002FA                            PREW            256  FWH       
+XMC                          XM25QH80B                            PREW           1024  SPI       
 XMC                          XM25QH64C                            PREW           8192  SPI       
 XMC                          XM25QU64C                                           8192  SPI       
 XMC                          XM25QH128A                           PREW          16384  SPI       
@@ -946,6 +997,7 @@ XMC                          XM25QH128C                                         
 XMC                          XM25QU128C                                         16384  SPI       
 XMC                          XM25QH256C                           PR            32768  SPI       
 XMC                          XM25QU256C                                         32768  SPI       
+XTX Technology Limited       XT25F02E                             PREW            256  SPI       
 XTX Technology Limited       XT25F64B                             PREW           8192  SPI       
 Zetta Device                 ZD25D20                                              256  SPI       
 Zetta Device                 ZD25D40                                              512  SPI       
@@ -954,3 +1006,4 @@ Zetta Device                 ZD25D40                                            
 # Related
 - https://github.com/therealdreg/flashrom-dregmod
 - https://github.com/therealdreg/asprogrammer-dregmod
+- https://github.com/therealdreg/buzzpirat
