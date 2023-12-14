@@ -16,21 +16,60 @@ btw, **flashrom works better on Linux** ;-)
 
 ![buspirate_winbond_mini](buspirate_winbond_mini.png)
 
-## Dreg's mods
+## Buzzpirat & Bus Pirate help
 
-- buspirate: Add option for setting the aux pin: https://review.coreboot.org/c/flashrom/+/43608
+A required `dev` parameter specifies the Bus Pirate device node and an optional `spispeed` parameter specifies the frequency of the SPI bus. The parameter delimiter is a comma. Syntax is:
 
-When working with low-voltage chips, the internal 10k pull-ups of the Bus Pirate might be too high. In such cases, it's 
-necessary to create an external pull-up using lower-value resistors. For this, you can use the ``hiz`` parameter. 
-This way, the Bus Pirate will operate as an open drain. Syntax is::
+```bash
+flashrom -p buspirate_spi:dev=/dev/device,spispeed=frequency
 ```
+
+where `frequency` can be `30k`, `125k`, `250k`, `1M`, `2M`, `2.6M`, `4M` or `8M` (in Hz). The default is the maximum frequency of 8 MHz.
+
+The baud rate for communication between the host and the Bus Pirate can be specified with the optional `serialspeed` parameter. Syntax is:
+
+```bash
+flashrom -p buspirate_spi:serialspeed=baud
+```
+
+where `baud` can be `115200`, `230400`, `250000` or `2000000` (`2M`). The default is `2M` baud for Bus Pirate hardware version 3.0 and greater, and 115200 otherwise.
+
+An optional pullups parameter specifies the use of the Bus Pirate internal pull-up resistors. This may be needed if you are working with a flash ROM chip that you have physically removed from the board. Syntax is:
+
+```bash
+flashrom -p buspirate_spi:pullups=state
+```
+
+where `state` can be `on` or `off`. More information about the Bus Pirate pull-up resistors and their purpose is available [in a guide by dangerousprototypes](http://dangerousprototypes.com/docs/Practical_guide_to_Bus_Pirate_pull-up_resistors).
+
+When working with low-voltage chips, the internal 10k pull-ups of the Bus Pirate might be too high. In such cases, it’s necessary to create an external pull-up using lower-value resistors.
+
+For this, you can use the `hiz` parameter. This way, the Bus Pirate will operate as an open drain. Syntax is:
+
+```bash
 flashrom -p buspirate_spi:hiz=state
 ```
 
-AUX param:
+where `state` can be `on` or `off`.
+
+The state of the Bus Pirate power supply pins is controllable through an optional `psus` parameter. Syntax is:
+
+```bash
+flashrom -p buspirate_spi:psus=state
 ```
-aux=high/low
+
+where `state` can be `on` or `off`. This allows the bus pirate to power the ROM chip directly. This may also be used to provide the required pullup voltage (when using the `pullups` option), by connecting the Bus Pirate’s Vpu input to the appropriate Vcc pin.
+
+An optional aux parameter specifies the state of the Bus Pirate auxiliary pin. This may be used to drive the auxiliary pin high or low before a transfer. Syntax is:
+
+```bash
+flashrom -p buspirate_spi:aux=state
 ```
+
+where `state` can be `high` or `low`. The default `state` is `high`.
+
+
+## Compilation
   
 ```
 meson setup builddir --wipe --prefer-static  --clearcache --default-library  static
