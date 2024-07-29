@@ -3,6 +3,10 @@ flashrom Dreg's fork build for windows x64 buspirate_spi, raiden_debug_spi, ft22
 
 **NOTE: x32 build is included**
 
+Download last release:
+
+https://github.com/therealdreg/flashrom_build_windows_x64/releases/download/1.4/flashrom-1.4.zip
+
 http://dangerousprototypes.com/forum/index.php?topic=10697
 
 Source code:
