@@ -1,5 +1,5 @@
 # flashrom_build_windows_x64
-flashrom Dreg's fork build for windows x64 buspirate_spi, raiden_debug_spi, ft2232_spi, serprog, dediprog, developerbox, pony_spi, usbblaster_spi, pickit2_spi, ch341a_spi, ch347_spi, digilent_spi, stlinkv3_spi, dirtyjtag_spi
+flashrom Dreg's fork build for windows x64 & x32 buspirate_spi, raiden_debug_spi, ft2232_spi, serprog, dediprog, developerbox, pony_spi, usbblaster_spi, pickit2_spi, ch341a_spi, ch347_spi, digilent_spi, stlinkv3_spi, dirtyjtag_spi
 
 **NOTE: x32 build is included**
 
