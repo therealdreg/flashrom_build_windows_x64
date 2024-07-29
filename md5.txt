@@ -1,0 +1,2 @@
+cb28ad051eba02efb0800ddea391661a *flashrom.exe
+006a5a2ef9059bbc3a04fa8b5bf33ebf *x32_flashrom/flashrom.exe

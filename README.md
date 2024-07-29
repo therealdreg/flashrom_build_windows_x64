@@ -1048,3 +1048,4 @@ Zetta Device                 ZD25D40                                            
 - https://github.com/therealdreg/flashrom-dregmod
 - https://github.com/therealdreg/asprogrammer-dregmod
 - https://github.com/therealdreg/buzzpirat
+
